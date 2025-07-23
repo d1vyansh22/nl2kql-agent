@@ -1,0 +1,42 @@
+{
+    "nodes": [
+        {
+            "id": "enricher",
+            "label": "enricher"
+        },
+        {
+            "id": "kql_generator",
+            "label": "kql_generator"
+        },
+        {
+            "id": "kql_validator",
+            "label": "kql_validator"
+        },
+        {
+            "id": "END",
+            "label": "END"
+        }
+    ],
+    "edges": [
+        {
+            "source": "enricher",
+            "target": "kql_generator",
+            "type": "direct"
+        },
+        {
+            "source": "kql_generator",
+            "target": "kql_validator",
+            "type": "direct"
+        },
+        {
+            "source": "kql_validator",
+            "target": "kql_generator",
+            "type": "conditional_retry"
+        },
+        {
+            "source": "kql_validator",
+            "target": "END",
+            "type": "conditional_success"
+        }
+    ]
+}
